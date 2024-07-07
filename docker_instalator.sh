@@ -1,13 +1,12 @@
 #! /bin/bash
 
-# skrypt na podstawie artykułu: https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648
+# skrypt na podstawie artykułu: https://www.kali.org/docs/containers/installing-docker-on-kali/
 
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-echo 'deb https://download.docker.com/linux/debian stretch stable' > /etc/apt/sources.list.d/docker.list
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 apt-get update
 
-apt-get remove docker docker-engine docker.io
-apt-get install docker.io
+apt-get remove docker docker-engine docker.io docker-ce docker-ce-cli containerd.io
+apt-get install -y docker.io
 docker run hello-world
 docker version
